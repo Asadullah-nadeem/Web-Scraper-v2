@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-8 text-indigo-600"><%= title %></h1>
+
+        <form action="/scrape" method="POST" class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
+            <div class="mb-4">
+                <label for="url" class="block text-lg font-semibold text-gray-700">Enter URL:</label>
+                <input type="text" id="url" name="url" required 
+                       class="mt-2 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <button type="submit" 
+                    class="w-full py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                Scrape
+            </button>
+        </form>
+
+        <% if (data) { %>
+            <div class="mt-8">
+                <% if (data.error) { %>
+                    <p class="text-red-600 font-semibold text-center"><%= data.error %></p>
+                <% } else { %>
+                    <div class="bg-white rounded-lg shadow-lg">
+                    
+                        <% if (data.filePath) { %>
+                            <div class="mt-4 text-center">
+                                <p class="text-lg text-gray-800">Data saved in: 
+                                    <a href="<%= data.filePath %>" target="_blank" 
+                                       class="text-indigo-600 hover:underline">
+                                       <%= data.filePath %></a>
+                                </p>
+                            </div>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

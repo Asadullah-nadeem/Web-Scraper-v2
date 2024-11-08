@@ -1,0 +1,1 @@
+# A Node.js web scraper that extracts page title, description, and headings, saving data in JSON format for download.
